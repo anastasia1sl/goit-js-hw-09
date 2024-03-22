@@ -1,17 +1,19 @@
-const form = document.querySelector('.feedback-form');
-const emailInput = document.querySelector('.feedback-form input');
-const textarea = document.querySelector('.feedback-form textarea');
+const form = document.querySelector('form');
+const emailInput = document.querySelector('input');
+const textarea = document.querySelector('textarea');
 
 form.addEventListener('submit', onFormSubmit);
-emailInput.addEventListener('input', collectFormData);
-textarea.addEventListener('input', collectFormData);
+form.addEventListener('input', collectFormData);
 
 storedData();
 
 function onFormSubmit(event) {
   event.preventDefault();
 
-  if (emailInput.value === '' || textarea.value === '') {
+  const email = emailInput.value.trim();
+  const message = textarea.value.trim();
+
+  if (email === '' || message === '') {
     alert('The fields can not be empty');
     return;
   } else {
@@ -35,7 +37,7 @@ function collectFormData() {
 function storedData() {
   const savedMessage = localStorage.getItem('feedback-form-state');
 
-  if (savedMessage) {
+  if (savedMessage !== null && savedMessage !== 'undefined') {
     const { email, message } = JSON.parse(savedMessage);
     emailInput.value = email;
     textarea.value = message;

@@ -73,7 +73,7 @@ function createMarkup(arr) {
   return arr
     .map(
       image => `<li class="gallery-item">
-	<a class="gallery-link" href="${image.original}" aria-label="${image.description}">
+	<a class="gallery-link" href="${image.original}">
 		<img 
 			class="gallery-image" 
 			src="${image.preview}" 
